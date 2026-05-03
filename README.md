@@ -26,3 +26,8 @@ Link: *u izradi*
 - Prijava u sustav (login)
 - Pregled profila korisnika (ime, email, škola)
 - Promjena lozinke
+
+### Mirjana Peša
+- Stvaranje novih listića (predmet, datum, napomena)
+- Brisanje listića
+- Sortiranje listića po datumu (najnoviji prvi)
