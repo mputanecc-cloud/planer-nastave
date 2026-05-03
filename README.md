@@ -31,3 +31,8 @@ Link: *u izradi*
 - Stvaranje novih listića (predmet, datum, napomena)
 - Brisanje listića
 - Sortiranje listića po datumu (najnoviji prvi)
+
+### Anita Skvaža
+- Označavanje listića kao favorit
+- Ažuriranje postojećih listića
+- Brojači na vrhu stranice (ukupno listića, po predmetima, favoriti)
