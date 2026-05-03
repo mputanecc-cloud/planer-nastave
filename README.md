@@ -1,35 +1,28 @@
-# planer-nastave
+# Planer nastave
 
-This template should help get you started developing with Vue 3 in Vite.
+## Opis aplikacije
 
-## Recommended IDE Setup
+Planer nastave je web aplikacija za učitelje koja omogućuje organizaciju nastavnih materijala kroz listiće. Svaki listić sadrži predmet, datum i napomenu. Aplikacija omogućuje prijavu, pregled profila, stvaranje i brisanje listića, označavanje favorita te pregled statistike po predmetima.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Članovi tima
 
-## Customize configuration
+- Magdalena Putanec Cetinić
+- Mirjana Peša
+- Anita Skvaža
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Fakultet i kolegij
 
-## Project Setup
+- [Fakultet informatike u Puli](https://fipu.unipu.hr/)
+- Kolegij: [Programsko inženjerstvo](https://ntankovic.unipu.hr/pi)
+- Mentor: [doc. dr. sc. Nikola Tanković](https://ntankovic.unipu.hr)
 
-```sh
-npm install
-```
+## Javni prototip
 
-### Compile and Hot-Reload for Development
+Link: *u izradi*
 
-```sh
-npm run dev
-```
+## Zaduženja po članovima tima
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+### Magdalena Putanec Cetinić
+- Prijava u sustav (login)
+- Pregled profila korisnika (ime, email, škola)
+- Promjena lozinke
