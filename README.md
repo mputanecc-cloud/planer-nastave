@@ -18,7 +18,7 @@ Planer nastave je web aplikacija za učitelje koja omogućuje organizaciju nasta
 
 ## Javni prototip
 
-Link: *u izradi*
+Link: https://planer-nastave-app.vercel.app/
 
 ## Zaduženja po članovima tima
 
