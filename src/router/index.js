@@ -17,6 +17,12 @@ const routes = [
     name: "Profil",
     component: ProfilPage,
     meta: { zahtijevaPrijavu: true }
+  },
+  {
+    path: "/listici",
+    name: "Listici",
+    component: ListiciPage,
+    meta: { zahtijevaPrijavu: true }
   }
 ]
 
