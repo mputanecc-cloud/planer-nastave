@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import LoginPage from "../views/LoginPage.vue"
 import ProfilPage from "../views/ProfilPage.vue"
+import ListiciPage from "../views/ListiciPage.vue"
 import { auth } from "../firebase"
 
 Vue.use(VueRouter)
