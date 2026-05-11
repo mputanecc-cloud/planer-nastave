@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import { auth, db } from "../firebase"
+import firebase from "firebase/app"
+
 export default {
   name: "ListiciPage",
   data() {
@@ -30,8 +33,18 @@ export default {
     }
   },
   methods: {
-    dodajListic() {
-      // spremanje u bazu dolazi u sljedecem commitu
+    async dodajListic() {
+      if (!this.noviPredmet) return
+      const korisnik = auth.currentUser
+      await db.collection("listici").add({
+        predmet: this.noviPredmet,
+        napomena: this.novaNapomena,
+        datum: firebase.firestore.FieldValue.serverTimestamp(),
+        isFavorite: false,
+        userId: korisnik.uid
+      })
+      this.noviPredmet = ""
+      this.novaNapomena = ""
     }
   }
 }
