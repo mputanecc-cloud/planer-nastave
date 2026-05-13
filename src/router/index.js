@@ -33,12 +33,22 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const korisnik = auth.currentUser
-  if (to.meta.zahtijevaPrijavu && !korisnik) {
-    next("/")
-  } else {
-    next()
+  const cekajKorisnika = () => {
+    return new Promise((resolve) => {
+      const unsubscribe = auth.onAuthStateChanged(korisnik => {
+        unsubscribe()
+        resolve(korisnik)
+      })
+    })
   }
+
+  cekajKorisnika().then(korisnik => {
+    if (to.meta.zahtijevaPrijavu && !korisnik) {
+      next("/")
+    } else {
+      next()
+    }
+  })
 })
 
 export default router
