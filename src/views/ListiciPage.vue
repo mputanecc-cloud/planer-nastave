@@ -17,6 +17,15 @@
         </div>
       </div>
     </div>
+    <div class="card p-3 mb-2 mt-3" v-for="listic in listici" :key="listic.id">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <strong>{{ listic.predmet }}</strong>
+          <br>
+          <small class="text-muted">{{ listic.napomena }}</small>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,10 +38,26 @@ export default {
   data() {
     return {
       noviPredmet: "",
-      novaNapomena: ""
+      novaNapomena: "",
+      listici: []
     }
   },
+  async created() {
+    await this.dohvatiListice()
+  },
   methods: {
+    async dohvatiListice() {
+      const korisnik = auth.currentUser
+      if (korisnik) {
+        const snapshot = await db.collection("listici")
+          .where("userId", "==", korisnik.uid)
+          .get()
+        this.listici = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+      }
+    },
     async dodajListic() {
       if (!this.noviPredmet) return
       const korisnik = auth.currentUser
@@ -45,6 +70,7 @@ export default {
       })
       this.noviPredmet = ""
       this.novaNapomena = ""
+      await this.dohvatiListice()
     }
   }
 }
