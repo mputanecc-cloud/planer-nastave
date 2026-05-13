@@ -25,6 +25,9 @@
           <br>
           <small class="text-muted">{{ formatirajDatum(listic.datum) }} — {{ listic.napomena }}</small>
         </div>
+        <div>
+          <button class="btn btn-danger btn-sm" @click="obrisiListic(listic.id)">Obriši</button>
+        </div>
       </div>
     </div>
   </div>
@@ -78,6 +81,10 @@ export default {
       if (!datum) return ""
       const d = datum.toDate()
       return d.toLocaleDateString("hr-HR")
+    },
+    async obrisiListic(id) {
+      await db.collection("listici").doc(id).delete()
+      await this.dohvatiListice()
     }
   }
 }
