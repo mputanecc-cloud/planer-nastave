@@ -89,3 +89,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+  background-color: #22C55E;
+  border-color: #22C55E;
+}
+
+.btn-danger {
+  background-color: #EF4444;
+  border-color: #EF4444;
+}
+</style>
