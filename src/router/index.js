@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import LoginPage from "../views/LoginPage.vue"
 import ProfilPage from "../views/ProfilPage.vue"
 import ListiciPage from "../views/ListiciPage.vue"
+import FavoritiPage from "../views/FavoritiPage.vue"
 import { auth } from "../firebase"
 
 Vue.use(VueRouter)
@@ -23,6 +24,12 @@ const routes = [
     path: "/listici",
     name: "Listici",
     component: ListiciPage,
+    meta: { zahtijevaPrijavu: true }
+  },
+  {
+    path: "/favoriti",
+    name: "Favoriti",
+    component: FavoritiPage,
     meta: { zahtijevaPrijavu: true }
   }
 ]
