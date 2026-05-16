@@ -20,10 +20,15 @@
     <p class="text-muted mt-3 text-right">Sortirano: najnovije prvo</p>
     <div class="card p-3 mb-2" v-for="listic in listici" :key="listic.id">
       <div class="d-flex align-items-center justify-content-between">
-        <div>
-          <strong>{{ listic.predmet }}</strong>
+        <div class="d-flex align-items-center">
+          <span class="favorit-zvjezdica mr-3" @click="toggleFavorit(listic)">
+            {{ listic.isFavorite ? "★" : "☆" }}
+          </span>
+          <div>
+            <strong>{{ listic.predmet }}</strong>
           <br>
           <small class="text-muted">{{ formatirajDatum(listic.datum) }} — {{ listic.napomena }}</small>
+          </div>
         </div>
         <div>
           <button class="btn btn-danger btn-sm" @click="obrisiListic(listic.id)">Obriši</button>
@@ -85,6 +90,12 @@ export default {
     async obrisiListic(id) {
       await db.collection("listici").doc(id).delete()
       await this.dohvatiListice()
+    },
+    async toggleFavorit(listic) {
+      await db.collection("listici").doc(listic.id).update({
+        isFavorite: !listic.isFavorite
+      })
+      await this.dohvatiListice()
     }
   }
 }
@@ -103,5 +114,11 @@ export default {
 .btn-danger {
   background-color: #EF4444;
   border-color: #EF4444;
+}
+
+.favorit-zvjezdica {
+  font-size: 22px;
+  cursor: pointer;
+  color: #FBBF24;
 }
 </style>
