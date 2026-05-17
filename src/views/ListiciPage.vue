@@ -13,7 +13,8 @@
           <input type="text" class="form-control" v-model="novaNapomena" placeholder="Str. 45-50">
         </div>
         <div class="col-auto">
-          <button class="btn btn-success" @click="dodajListic">Dodaj</button>
+          <button v-if="!editId" class="btn btn-success" @click="dodajListic">Dodaj</button>
+          <button v-else class="btn btn-primary" @click="spremiIzmjenu">Spremi</button>
         </div>
       </div>
     </div>
@@ -31,6 +32,7 @@
           </div>
         </div>
         <div>
+          <button class="btn btn-primary btn-sm mr-1" @click="urediListic(listic)">Uredi</button>
           <button class="btn btn-danger btn-sm" @click="obrisiListic(listic.id)">Obriši</button>
         </div>
       </div>
@@ -48,7 +50,8 @@ export default {
     return {
       noviPredmet: "",
       novaNapomena: "",
-      listici: []
+      listici: [],
+      editId: null
     }
   },
   async created() {
@@ -95,6 +98,21 @@ export default {
       await db.collection("listici").doc(listic.id).update({
         isFavorite: !listic.isFavorite
       })
+      await this.dohvatiListice()
+    },
+    urediListic(listic) {
+      this.noviPredmet = listic.predmet
+      this.novaNapomena = listic.napomena
+      this.editId = listic.id
+    },
+    async spremiIzmjenu() {
+      await db.collection("listici").doc(this.editId).update({
+        predmet: this.noviPredmet,
+        napomena: this.novaNapomena
+      })
+      this.editId = null
+      this.noviPredmet = ""
+      this.novaNapomena = ""
       await this.dohvatiListice()
     }
   }
