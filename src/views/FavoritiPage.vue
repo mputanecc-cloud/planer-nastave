@@ -21,6 +21,18 @@
         </div>
       </div>
     </div>
+    <h4 class="mt-4">Omiljeni listići</h4>
+    <div class="card p-3 mb-2" v-for="listic in favoriti" :key="listic.id">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <strong>{{ listic.predmet }}</strong>
+          <br>
+          <small class="text-muted">{{ listic.napomena }}</small>
+        </div>
+        <button class="btn btn-warning btn-sm" @click="makniIzFavorita(listic)">Makni iz favorita</button>
+      </div>
+    </div>
+    <p v-if="favoriti.length === 0" class="text-muted mt-2">Nema favorita.</p>
   </div>
 </template>
 
@@ -44,11 +56,29 @@ export default {
     brojPredmeta() {
       const predmeti = this.listici.map(l => l.predmet)
       return [...new Set(predmeti)].length
+    },
+    favoriti() {
+      return this.listici.filter(l => l.isFavorite)
     }
   },
   async created() {
     const korisnik = auth.currentUser
     if (korisnik) {
+      const snapshot = await db.collection("listici")
+        .where("userId", "==", korisnik.uid)
+        .get()
+      this.listici = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+    }
+  },
+  methods: {
+    async makniIzFavorita(listic) {
+      await db.collection("listici").doc(listic.id).update({
+        isFavorite: false
+      })
+      const korisnik = auth.currentUser
       const snapshot = await db.collection("listici")
         .where("userId", "==", korisnik.uid)
         .get()
